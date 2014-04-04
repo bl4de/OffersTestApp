@@ -1,8 +1,10 @@
-<?php
-require_once '../bootstrap.php';
+<?php 
+require_once '../vendor/autoload.php'; 
+
+$app = new Application("App");
+$appInstance = $app->getInstance();
 ?>
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>Framework test app</title>

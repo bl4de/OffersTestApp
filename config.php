@@ -1,5 +1,8 @@
 <?php
 /*
- * config entries
+ * application config 
  */
-define('APP_NAME', 'BB');
+class Config {
+    public static $APP_NAME = "BB";
+    
+}
