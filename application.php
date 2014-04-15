@@ -20,7 +20,8 @@ class ObjectMaper {
                 "state" => $value->state,
                 "city" => $value->city,
                 "position" => $value->position,
-                "added" => $value->added
+                "added" => $value->added,
+                "link" => $value->link
             ]);
         }
         return $arr;

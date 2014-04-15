@@ -38,6 +38,7 @@
                                         <th>Position</th>
                                         <th>State/Province</th>
                                         <th>City</th>
+                                        <th>Link</th>
                                         <th>Date added</th>
                                     </tr>
                                 </thead>
@@ -48,6 +49,7 @@
                                         <td>{{ offer.position }}</td>
                                         <td>{{ offer.state }}</td>
                                         <td>{{ offer.city }}</td>
+                                        <td><a href="{{ offer.link }}" target="_blank">click to open</a></td>
                                         <td>{{ offer.added }}</td>
                                     </tr>
                                     <tbody>
