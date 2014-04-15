@@ -8,7 +8,7 @@ echo "[* Composer *] Updating classpaths"
 composer dump-autoload
 
 #run tests
-echo "[* PHPUnit *] Run testsuites"
-phpunit
+# echo "[* PHPUnit *] Run testsuites"
+# phpunit
 
 echo "[* build completed! *]"

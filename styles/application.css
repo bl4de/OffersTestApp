@@ -63,6 +63,16 @@ body {
 /*
  * Main content
  */
+.navbar-fixed-top {
+  background-color: #fff;
+  background: url('../images/flags.jpg') top left no-repeat;
+  background-size: 100%;
+}
+
+.navbar-fixed-top span.navbar-brand {
+  color: #fff;
+  font-size:1.8em;
+}
 
 .main {
   padding: 20px;
