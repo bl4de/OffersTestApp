@@ -18,7 +18,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
         $scope.getOffers = function() {
             $http.get("application.php/offers").then(
                 function(response) {
-                    $scope.offers = response.data.offers;
+                    $scope.offers = response.data;
                 },
                 function(repsonse) {
                     console.log("error: " + response.data);
@@ -40,7 +40,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
         $scope.getOffer = function() {
             $http.get("application.php/offer/:id").then(
                 function(response) {
-                    $scope.offer = response.data.offer;
+                    $scope.offer = response.data;
                 },
                 function(response) {
                     console.log("error: " + response.data);

@@ -8,7 +8,7 @@ require 'vendor/rb.phar';
 
 $app = new Slim\Slim();
 
-class ObjectMaper {
+class ObjectMapper {
     public static function map( $obj ) {
         $arr = [];
 
@@ -32,9 +32,14 @@ class ObjectMaper {
 R::setup( 'mysql:host=localhost;dbname=offers', 'root', 'root' );
 
 $app->get( "/offer/:id", function( $id ) use ( $app ) {
-        $offer = R::load( 'offer', $id );
-        $app->response()->header( 'Content-Type', 'application/json' );
-        echo json_encode( $offer );
+        $offer = R::findOne( 'offer', 'id=?', array( $id ) );
+        if ( $offer ) {
+            $app->response()->header( 'Content-Type', 'application/json' );
+            // echo json_encode( ObjectMapper::map( ["offer" => $offer] ));
+            echo json_encode( R::exportAll($offer) );
+        } else {
+            // error handling
+        }
     } );
 
 $app->get( "/offers", function() use ( $app ) {
@@ -42,7 +47,8 @@ $app->get( "/offers", function() use ( $app ) {
         // print_r($offers);
 
         $app->response()->header( 'Content-Type', 'application/json' );
-        echo json_encode( ["offers" => ObjectMaper::map( $offers ) ] );
+        // echo json_encode( ["offers" => ObjectMapper::map( $offers ) ] );
+        echo json_encode( R::exportAll($offers) );
     } );
 
 $app->run();
