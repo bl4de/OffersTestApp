@@ -11,6 +11,17 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
         // init module
         $scope.init = function() {
+
+            // offer model object
+            $scope.offer = {
+                company: '',
+                country: '',
+                state: '',
+                city: '',
+                position: '',
+                link: ''
+            };
+
             $scope.getOffers();
         };
 
@@ -30,8 +41,19 @@ Application.controller("ApplicationController", ["$scope", "$http",
         // post offer
         //
         $scope.saveOffer = function() {
-            // @TODO
-
+            $http({
+                url: 'application.php/save',
+                method: 'POST',
+                data: $scope.offer
+            }).then(
+                function(response) {
+                    $scope.getOffers();
+                    console.log("saved");
+                },
+                function(response) {
+                    console.warn("error: " + response.data);
+                }
+            );
         };
 
 

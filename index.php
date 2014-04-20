@@ -30,6 +30,43 @@
                 <div class="col-sm-12">
                     <div class="container-fluid">
                         <div class="row">
+                            <form role="form" class="form-vertical">
+                                <fieldset>
+                                    <div class="form-group col-xs-3">
+                                        <label for="company">Company name</label>
+                                        <input type="text" class="form-control input-sm " id="company" ng-model="offer.company" placeholder="company name..." />
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <label for="country">Country</label>
+                                        <!-- TODO - select with Canada and United States -->
+                                        <input type="text" class="form-control input-sm " id="country" ng-model="offer.country" placeholder="country..." />
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <!-- TODO - select with states/provinces depends on 'country' -->
+                                        <label for="state">State (US)/Province (Canada) name</label>
+                                        <input type="text" class="form-control input-sm " id="state" ng-model="offer.state" placeholder="state/province name..." />
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <label for="city">City</label>
+                                        <input type="text" class="form-control input-sm " id="city" ng-model="offer.city" placeholder="city name..." />
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <label for="position">Position</label>
+                                        <input type="text" class="form-control input-sm " id="position" ng-model="offer.position" placeholder="position name..." />
+                                    </div>
+                                    <div class="form-group col-xs-3">
+                                        <label for="link">Link</label>
+                                        <input type="text" class="form-control input-sm " id="link" ng-model="offer.link" placeholder="link..." />
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-success" ng-click="saveOffer()">Save</button>
+
+                                    </div>
+                                </fieldset>
+                                
+                            </form>
+                        </div>
+                        <div class="row">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -50,7 +87,7 @@
                                         <td>{{ offer.state }}</td>
                                         <td>{{ offer.city }}</td>
                                         <td><a href="{{ offer.link }}" target="_blank">click to open</a></td>
-                                        <td>{{ offer.added }}</td>
+                                        <td>{{ offer.added | date : 'yyyy-MM-dd' }}</td>
                                     </tr>
                                     <tbody>
                                     </table>
