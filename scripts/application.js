@@ -37,18 +37,52 @@ Application.controller("ApplicationController", ["$scope", "$http",
             );
         };
 
+        // edit offer
+        $scope.editOffer = function(offerId) {
+            console.log('offerId: ' + offerId);
+            $scope.getOffer(offerId);
+        };
+
+        // delete offer
+        $scope.deleteOffer = function(offerId) {
+            console.log('offerId: ' + offerId);
+            $http({
+                url: 'application.php/delete/' + offerId,
+                method: 'DELETE'
+            }).then(
+                function(response) {
+                    console.log('deleted');
+                    $scope.getOffers();
+                },
+                function(response) {
+                    console.warn("error: " + response.data);
+                }
+            );
+        };
 
         // post offer
         //
         $scope.saveOffer = function() {
-            $http({
-                url: 'application.php/save',
-                method: 'POST',
-                data: $scope.offer
-            }).then(
+            var result = null;
+
+            if ($scope.offer.id > 0) {
+                result = $http({
+                    url: 'application.php/change',
+                    method: 'PUT',
+                    data: $scope.offer
+                });
+            } else {
+                result = $http({
+                    url: 'application.php/save',
+                    method: 'POST',
+                    data: $scope.offer
+                });
+            }
+
+            result.then(
                 function(response) {
-                    $scope.getOffers();
                     console.log("saved");
+                    $scope.getOffers();
                 },
                 function(response) {
                     console.warn("error: " + response.data);
@@ -59,10 +93,10 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
 
         // get selected offer
-        $scope.getOffer = function() {
-            $http.get("application.php/offer/:id").then(
+        $scope.getOffer = function(offerId) {
+            $http.get("application.php/offer/" + offerId).then(
                 function(response) {
-                    $scope.offer = response.data;
+                    $scope.offer = response.data[0];
                 },
                 function(response) {
                     console.log("error: " + response.data);
