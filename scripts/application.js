@@ -14,6 +14,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
             // offer model object
             $scope.offer = {
+                id: null,
                 company: '',
                 country: '',
                 state: '',
@@ -21,6 +22,8 @@ Application.controller("ApplicationController", ["$scope", "$http",
                 position: '',
                 link: ''
             };
+
+            $scope.search = '';
 
             $scope.getOffers();
         };
@@ -41,6 +44,10 @@ Application.controller("ApplicationController", ["$scope", "$http",
         $scope.editOffer = function(offerId) {
             console.log('offerId: ' + offerId);
             $scope.getOffer(offerId);
+        };
+
+        $scope.clearForm = function() {
+            $scope.init();
         };
 
         // delete offer

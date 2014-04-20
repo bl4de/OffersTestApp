@@ -137,6 +137,7 @@
                         <div class="row">
                             <div class="form-group col-xs-3">
                                 <button type="button" class="btn btn-success" ng-click="saveOffer()">Save</button>
+                                <button type="button" class="btn btn-danger" ng-click="clearForm()">Reset all</button>
                                 <input type="hidden" name="id" ng-model="offer.id" />
                             </div>
                         </fieldset>
