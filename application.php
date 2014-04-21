@@ -66,6 +66,9 @@ $app->put( "/change", function() use ( $app ) {
                 $offer->state = (string)$input->state;
                 $offer->city = (string)$input->city;
                 $offer->position = (string)$input->position;
+                $offer->status = (string)$input->status;
+                $offer->salary = (string)$input->salary;
+                $offer->description = (string)$input->description;
                 $offer->link = (string)$input->link;
 
                 $id = R::store( $offer );
@@ -91,6 +94,9 @@ $app->post( "/save", function() use ( $app ) {
             $offer->city = (string)$input->city;
             $offer->position = (string)$input->position;
             $offer->link = (string)$input->link;
+            $offer->status = (string)$input->status;
+            $offer->salary = (string)$input->salary;
+            $offer->description = (string)$input->description;
 
             $id = R::store( $offer );
         } catch ( Exception $e ) {

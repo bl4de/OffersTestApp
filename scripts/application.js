@@ -20,10 +20,15 @@ Application.controller("ApplicationController", ["$scope", "$http",
                 state: '',
                 city: '',
                 position: '',
-                link: ''
+                link: '',
+                status: '',
+                salary: '',
+                description: ''
             };
 
             $scope.search = '';
+
+            $scope.showform = false;
 
             $scope.getOffers();
         };
@@ -42,12 +47,20 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
         // edit offer
         $scope.editOffer = function(offerId) {
-            console.log('offerId: ' + offerId);
             $scope.getOffer(offerId);
+            $scope.showform = true;
         };
 
         $scope.clearForm = function() {
             $scope.init();
+        };
+
+        $scope.hideForm = function() {
+            $scope.showform = false;
+        };
+
+        $scope.addOffer = function() {
+            $scope.showform = true;
         };
 
         // delete offer
@@ -90,6 +103,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
                 function(response) {
                     console.log("saved");
                     $scope.getOffers();
+                    $scope.showform = false;
                 },
                 function(response) {
                     console.warn("error: " + response.data);
