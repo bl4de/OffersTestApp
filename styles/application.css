@@ -24,6 +24,10 @@ body {
   border-radius: 5px;
 }
 
+#popup-modal button {
+  margin-right:10px;
+}
+
 #form-modal {
   position: fixed;
   top:20%;
