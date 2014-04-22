@@ -179,7 +179,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="showDetails(offer)" ng-class="{'red-bg':offer.status=='rejected','green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend'}" ng-repeat="offer in offers | filter: search" title="{{ offer.description }}">
+                        <tr ng-click="showDetails(offer)" ng-class="{'red-bg':offer.status=='rejected','green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend'}" ng-repeat="offer in offers track by offer.id | filter: search" title="{{ offer.description }}">
                             <td>{{ offer.id }}</td>
                             <td>{{ offer.company }}</td>
                             <td>{{ offer.position }}</td>
