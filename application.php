@@ -67,7 +67,7 @@ $app->put( "/change", function() use ( $app ) {
                 $offer->city = (string)$input->city;
                 $offer->position = (string)$input->position;
                 $offer->status = (string)$input->status;
-                $offer->salary = (string)$input->salary;
+                $offer->salary = (int)$input->salary;
                 $offer->description = (string)$input->description;
                 $offer->link = (string)$input->link;
 
@@ -80,6 +80,7 @@ $app->put( "/change", function() use ( $app ) {
         }
     } );
 
+// add new offer
 $app->post( "/save", function() use ( $app ) {
         try {
             $req = $app->request();
@@ -95,7 +96,7 @@ $app->post( "/save", function() use ( $app ) {
             $offer->position = (string)$input->position;
             $offer->link = (string)$input->link;
             $offer->status = (string)$input->status;
-            $offer->salary = (string)$input->salary;
+            $offer->salary = (int)$input->salary;
             $offer->description = (string)$input->description;
 
             $id = R::store( $offer );

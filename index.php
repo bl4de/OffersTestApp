@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="styles/application.css" />
     </head>
     <body ng-app="Application" ng-controller="ApplicationController">
-        
+        <popup id="popup-modal" ng-show="showpopup" header="popup.header" content="popup.content" callback="popup.okCallback()"></popup>
         <div id="form-modal" ng-show="showform">
             <div class="container-fluid">
                 <form role="form" class="form-vertical">
@@ -53,6 +53,7 @@
                                     <option value="QC">Quebec</option>
                                     <option value="SK">Saskatchewan</option>
                                     <option value="YT">Yukon</option>
+                                    <option value=""></option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
                                     <option value="AZ">Arizona</option>
@@ -131,7 +132,7 @@
                         <div class="row">
                             <div class="form-group col-xs-3">
                                 <button type="button" class="btn btn-success" ng-click="saveOffer()">Save</button>
-                                <button type="button" class="btn btn-warning" ng-click="clearForm()">Cancel</button>
+                                <button type="button" class="btn btn-danger" ng-click="cancelForm()">Cancel</button>
                                 <input type="hidden" name="id" ng-model="offer.id" />
                             </div>
                         </div>
@@ -178,7 +179,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="showDetails(offer)" ng-class="{'red-bg':offer.status=='rejected','green-bg':offer.status=='accepted'}" ng-repeat="offer in offers | filter: search" title="{{ offer.description }}">
+                        <tr ng-click="showDetails(offer)" ng-class="{'red-bg':offer.status=='rejected','green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend'}" ng-repeat="offer in offers | filter: search" title="{{ offer.description }}">
                             <td>{{ offer.id }}</td>
                             <td>{{ offer.company }}</td>
                             <td>{{ offer.position }}</td>

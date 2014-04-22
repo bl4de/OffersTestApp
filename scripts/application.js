@@ -5,13 +5,46 @@
 /*global angular*/
 var Application = angular.module("Application", []);
 
+Application.directive("popup", [
+
+    function() {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {
+                header: '=',
+                content: '=',
+                callback: '&'
+            },
+            template: '<div>' +
+                '<h4>{{ header }}</h4>' +
+                '<p>{{ content }}</p>' +
+                '<div class="row">' +
+                '<div class="form-group col-xs-3">' +
+                '<button type="button" class="btn btn-success" ng-click="ok()">Ok</button>' +
+                '<button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>',
+            link: function(scope, element, attributes) {},
+            controller: function($scope) {
+                $scope.ok = function() {
+                    $scope.$parent.showpopup = false;
+                    $scope.callback();
+                };
+
+                $scope.cancel = function() {
+                    $scope.$parent.showpopup = false;
+                };
+            }
+        };
+    }
+]);
 Application.controller("ApplicationController", ["$scope", "$http",
     function($scope, $http) {
         "use strict";
 
-        // init module
-        $scope.init = function() {
-
+        $scope.initModel = function() {
             // offer model object
             $scope.offer = {
                 id: null,
@@ -25,12 +58,24 @@ Application.controller("ApplicationController", ["$scope", "$http",
                 salary: '',
                 description: ''
             };
+        };
 
+        // init module
+        $scope.init = function() {
+            $scope.initModel();
             $scope.search = '';
-
             $scope.showform = false;
-
+            $scope.showpopup = false;
             $scope.getOffers();
+        };
+
+        $scope.showPopup = function(header, content, okCallback) {
+            $scope.popup = {
+                header: header,
+                content: content,
+                okCallback: okCallback
+            };
+            $scope.showpopup = true;
         };
 
         // get list of offers
@@ -51,39 +96,46 @@ Application.controller("ApplicationController", ["$scope", "$http",
             $scope.showform = true;
         };
 
-        $scope.clearForm = function() {
-            $scope.init();
-        };
-
-        $scope.hideForm = function() {
+        $scope.cancelForm = function() {
+            $scope.initModel();
             $scope.showform = false;
         };
 
+
         $scope.addOffer = function() {
+            $scope.initModel();
             $scope.showform = true;
         };
 
         // delete offer
         $scope.deleteOffer = function(offerId) {
             console.log('offerId: ' + offerId);
-            $http({
-                url: 'application.php/delete/' + offerId,
-                method: 'DELETE'
-            }).then(
-                function(response) {
-                    console.log('deleted');
-                    $scope.getOffers();
-                },
-                function(response) {
-                    console.warn("error: " + response.data);
-                }
-            );
+
+            $scope.showPopup("Confirm delete offer", "Delete offer?", function() {
+                $http({
+                    url: 'application.php/delete/' + offerId,
+                    method: 'DELETE'
+                }).then(
+                    function(response) {
+                        console.log('deleted');
+                        $scope.getOffers();
+                    },
+                    function(response) {
+                        console.warn("error: " + response.data);
+                    }
+                );
+            });
         };
 
         // post offer
         //
         $scope.saveOffer = function() {
             var result = null;
+
+            // default values
+            if (!$scope.offer.status) {
+                $scope.offer.status = "sent";
+            }
 
             if ($scope.offer.id > 0) {
                 result = $http({
