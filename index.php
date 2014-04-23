@@ -199,9 +199,9 @@
             </div>
         </div>
         <!-- vendors -->
-        <script src="lib/jquery.min.js"></script>
-        <script src="lib/angular.min.js"></script>
-        <script src="lib/bootstrap.min.js"></script>
+        <script src="scripts/lib/jquery.min.js"></script>
+        <script src="scripts/lib/angular.min.js"></script>
+        <script src="scripts/lib/bootstrap.min.js"></script>
         <!-- application -->
         <script src="scripts/application.js"></script>
     </body>

@@ -1,12 +1,6 @@
 <?php
 /*
     Application backend
-    company: '',
-                country: '',
-                state: '',
-                city: '',
-                position: '',
-                link: ''
 */
 
 require 'vendor/autoload.php';

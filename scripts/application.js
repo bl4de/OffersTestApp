@@ -44,6 +44,8 @@ Application.controller("ApplicationController", ["$scope", "$http",
     function($scope, $http) {
         "use strict";
 
+        var SERVER_URL = "server/application.php";
+
         $scope.initModel = function() {
             // offer model object
             $scope.offer = {
@@ -80,7 +82,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
         // get list of offers
         $scope.getOffers = function() {
-            $http.get("application.php/offers").then(
+            $http.get(SERVER_URL + "/offers").then(
                 function(response) {
                     $scope.offers = response.data;
                 },
@@ -167,7 +169,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
         // get selected offer
         $scope.getOffer = function(offerId) {
-            $http.get("application.php/offer/" + offerId).then(
+            $http.get(SERVER_URL + "/offer/" + offerId).then(
                 function(response) {
                     $scope.offer = response.data[0];
                 },

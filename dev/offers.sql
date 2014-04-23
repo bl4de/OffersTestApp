@@ -14,7 +14,7 @@ create table offer (
     link varchar(300),
     description text,
     status varchar(30)
-    );
+);
 
 insert into offer (company,country,state,city,position, salary, link, description, status) 
     values( "Google","United States","CA","Mountain View","JavaScript Developer", "100000", 
