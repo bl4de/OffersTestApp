@@ -4,7 +4,6 @@
 
 /*global angular*/
 var Application = angular.module("Application", []);
-
 Application.directive("popup", [
 
     function() {
@@ -65,7 +64,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
         // init module
         $scope.init = function() {
             $scope.initModel();
-            $scope.search = '';
+            $scope.searchText = '';
             $scope.showform = false;
             $scope.showpopup = false;
             $scope.getOffers();
@@ -115,7 +114,7 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
             $scope.showPopup("Confirm delete offer", "Delete offer?", function() {
                 $http({
-                    url: 'application.php/delete/' + offerId,
+                    url: SERVER_URL + '/delete/' + offerId,
                     method: 'DELETE'
                 }).then(
                     function(response) {
@@ -141,13 +140,13 @@ Application.controller("ApplicationController", ["$scope", "$http",
 
             if ($scope.offer.id > 0) {
                 result = $http({
-                    url: 'application.php/change',
+                    url: SERVER_URL + '/change',
                     method: 'PUT',
                     data: $scope.offer
                 });
             } else {
                 result = $http({
-                    url: 'application.php/save',
+                    url: SERVER_URL + '/save',
                     method: 'POST',
                     data: $scope.offer
                 });

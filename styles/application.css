@@ -47,7 +47,12 @@ body {
 .green-bg {
   background-color: #7e7;
 }
-
+.blue-bg {
+  background-color: #4DB9E4;
+}
+.yellow-bg {
+  background-color: #E4DA4D;
+}
 .orange-bg {
   background-color: #FF8000;
 }

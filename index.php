@@ -118,12 +118,15 @@
                                 <select  class="form-control input-sm" name="status" id="status" ng-model="offer.status">
                                     <option value="">select status: </option>
                                     <option value="sent">Sent, waiting for response</option>
-                                    <option value="rejected">Rejected</option>
+                                    <option value="later">Rejected for now, maybe later (must improve in some discpilines)</option>
+                                    <option value="interview">Accepted for interview</option>
+                                    <option value="task">Accepted for test task</option>
+                                    <option value="to sent">To sent later (must be provided some informations)</option>
                                     <option value="must_resend">Must resend</option>
-                                    <option value="accepted">Accepted</option>
+                                    <option value="rejected">Rejected definetly</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-input col-xs-3">
                                 <label for="descripton">description</label>
                                 <textarea name="description" ng-model="offer.description" rows="4" cols="70"></textarea>
@@ -153,11 +156,11 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right">
-                        <input type="text" ng-model="search" class="form-control input-sm" placeholder="Search in offers...">
-                        <button type="button" class="btn btn-danger" ng-click="hideForm()">Reset all</button>
+                        <input type="text" ng-model="searchText" class="form-control input-sm" placeholder="Search in offers...">
+                        <button type="button" class="btn btn-danger" ng-click="init()">Reset all</button>
                         <button type="button" class="btn btn-success" ng-click="addOffer()"><i class=""></i>&emsp;Add new offer</button>
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -169,7 +172,6 @@
                             <th>ID</th>
                             <th>Company name</th>
                             <th>Position</th>
-                            <th>Salary ($/year)</th>
                             <th>Country</th>
                             <th>City, State/Province</th>
                             <th>Link</th>
@@ -179,11 +181,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-click="showDetails(offer)" ng-class="{'red-bg':offer.status=='rejected','green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend'}" ng-repeat="offer in offers track by offer.id | filter: search" title="{{ offer.description }}">
+                        <tr ng-click="showDetails(offer)" ng-class="{'yellow-bg':offer.status=='task',
+                        'red-bg':offer.status=='to sent','blue-bg':offer.status=='interview',
+                        'green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend'}" 
+                        ng-repeat="offer in offers|filter:searchText" title="{{ offer.description }}">
                             <td>{{ offer.id }}</td>
                             <td>{{ offer.company }}</td>
                             <td>{{ offer.position }}</td>
-                            <td>{{ offer.salary | currency : "$" }}</td>
                             <td>{{ offer.country }}</td>
                             <td>{{ offer.city }}, {{ offer.state }}</td>
                             <td><a class="link" href="{{ offer.link }}" target="_blank">click to open</a></td>
