@@ -121,7 +121,7 @@
                                     <option value="later">Rejected for now, maybe later (must improve in some discpilines)</option>
                                     <option value="interview">Accepted for interview</option>
                                     <option value="task">Accepted for test task</option>
-                                    <option value="to sent">To sent later (must be provided some informations)</option>
+                                    <option value="later">To sent later (must be provided some informations)</option>
                                     <option value="must_resend">Must resend</option>
                                     <option value="rejected">Rejected definetly</option>
                                     <option value="accepted">Accepted !!! :D We're going to North America !!! :D</option>
@@ -166,6 +166,7 @@
         <div class="container-fluid">
             <div class="row">
                 <p>Offers send so far: <strong>{{offers.length}}</strong></p>
+                <p>Offers filtered: <strong>{{data.length}}</strong>
                 <div class="legend">
                     Legend (click to specified status to filter offers):
                     <span class="rejected" ng-click="searchText='rejected'">Rejected :(</span>
@@ -173,7 +174,9 @@
                     <span class="blue-bg" ng-click="searchText='interview'">Interview</span>
                     <span class="yellow-bg" ng-click="searchText='task'">Test task</span>
                     <span class="green-bg" ng-click="searchText='accepted'">Accepted</span>
-                    <span class="red-bg" ng-click="searchText='to sent'">To sent later</span>
+                    <span class="" ng-click="searchText='sent'">Sent</span>
+                    <span class="red-bg" ng-click="searchText='later'">To sent later</span>
+                    <a class="btn btn-danger btn-xs clear-btn" ng-click="searchText=''">Clear selection</a>
                 </div>
             </div>
             <div class="row">
@@ -193,10 +196,10 @@
                     </thead>
                     <tbody>
                         <tr ng-click="showDetails(offer)" ng-class="{'yellow-bg':offer.status=='task',
-                            'red-bg':offer.status=='to sent','blue-bg':offer.status=='interview',
+                            'red-bg':offer.status=='later','blue-bg':offer.status=='interview',
                             'green-bg':offer.status=='accepted','orange-bg':offer.status=='must_resend',
                             rejected:offer.status=='rejected'}"
-                            ng-repeat="offer in offers|filter:searchText" title="{{ offer.description }}">
+                            ng-repeat="offer in data = (offers|filter:searchText)" title="{{ offer.description }}">
                             <td>{{ offer.id }}</td>
                             <td>{{ offer.company }}</td>
                             <td>{{ offer.position }}</td>

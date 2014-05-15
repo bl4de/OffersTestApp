@@ -47,6 +47,10 @@ body {
   cursor: pointer;
 }
 
+.clear-btn {
+  margin-left: 100px;
+}
+
 .rejected {
   text-decoration: line-through;
 }
