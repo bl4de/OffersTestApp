@@ -164,9 +164,8 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row">
-                <p>Offers send so far: <strong>{{offers.length}}</strong></p>
-                <p>Offers filtered: <strong>{{data.length}}</strong>
+            <div class="row fixed">
+                <p>Offers send:<strong>{{offers.length}}</strong> |  Offers filtered: <strong>{{data.length}}</strong></p>
                 <div class="legend">
                     Legend (click to specified status to filter offers):
                     <span class="rejected" ng-click="searchText='rejected'">Rejected :(</span>
@@ -179,7 +178,7 @@
                     <a class="btn btn-danger btn-xs clear-btn" ng-click="searchText=''">Clear selection</a>
                 </div>
             </div>
-            <div class="row">
+            <div class="row table-block">
                 <table class="table">
                     <thead>
                         <tr>
