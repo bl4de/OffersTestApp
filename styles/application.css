@@ -48,12 +48,10 @@ body {
   height: 70px;
   border-bottom: 2px solid #000;
   background: #fff;
-  z-index: 99;
 }
 
 .table-block {
-  position: relative;
-  top:70px;
+  margin-top:70px;
 }
 
 .legend span {

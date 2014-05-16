@@ -165,7 +165,15 @@
         </div>
         <div class="container-fluid">
             <div class="row fixed">
-                <p>Offers send:<strong>{{offers.length}}</strong> |  Offers filtered: <strong>{{data.length}}</strong></p>
+                <p>
+                    Offers send:<strong>{{offers.length}}</strong> |&emsp;
+                      Offers filtered: <strong>{{data.length}}</strong> | &emsp;
+                    <span>
+                        Display offers only from: 
+                        <img src="images/canada.jpg" ng-click="searchText='canada'" style="height:24px; cursor:pointer;" title="Offers from Canada only" />
+                        <img src="images/usa.jpg" ng-click="searchText='united states'" style="height:24px; cursor:pointer;" title="Offers from USA only" />
+                    </span>
+                </p>
                 <div class="legend">
                     Legend (click to specified status to filter offers):
                     <span class="rejected" ng-click="searchText='rejected'">Rejected :(</span>
