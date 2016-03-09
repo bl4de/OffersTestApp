@@ -7,6 +7,7 @@
     </head>
     <body ng-app="Application" ng-controller="ApplicationController">
         <popup id="popup-modal" ng-show="showpopup" header="popup.header" content="popup.content" callback="popup.okCallback()"></popup>
+	<!-- comment added -->
         <div id="form-modal" ng-show="showform">
             <div class="container-fluid">
                 <form role="form" class="form-vertical">
